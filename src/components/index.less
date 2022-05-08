@@ -1,0 +1,24 @@
+.table{
+  width: 100%;
+  height: 600px;
+  background-color: #eee;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  border-spacing: 0;
+  .head-tr{
+    height: 60px;
+    line-height: 60px;
+    .head-th{
+      border-right: 1px solid #000;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+  }
+  .body-tr{
+    .body-td{
+      border-top: 1px solid #000;
+      border-right: 1px solid #000;
+    }
+  }
+}
