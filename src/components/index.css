@@ -12,6 +12,7 @@
 }
 .table .head-tr .head-th {
   border-right: 1px solid #000;
+  min-width: 60px;
 }
 .table .head-tr .head-th:hover {
   cursor: pointer;
@@ -19,4 +20,5 @@
 .table .body-tr .body-td {
   border-top: 1px solid #000;
   border-right: 1px solid #000;
+  min-width: 60px;
 }

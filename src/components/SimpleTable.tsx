@@ -1,5 +1,7 @@
 import { defineComponent } from "vue";
-import { type TableProps, tableProps } from "./types";
+import { type TableProps, tableProps, ListItemType } from "./types";
+import axios from 'axios'
+import { ref } from 'vue-demi'
 import './index.less'
 
 export default defineComponent({
@@ -26,77 +28,30 @@ export default defineComponent({
         label: '地址'
       }
     ]
-    const bodyList = [
-      {
-        name: '小何',
-        sex: '女',
-        age: '28',
-        address: '深圳市南山区'
-      },
-      {
-        name: '小熊',
-        sex: '女',
-        age: '12',
-        address: '深圳市南山区'
-      },
-      {
-        name: '小爱',
-        sex: '女',
-        age: '14',
-        address: '深圳市南山区'
-      },
-      {
-        name: '小何',
-        sex: '男',
-        age: '55',
-        address: '深圳市南山区'
-      },
-      {
-        name: '小妍',
-        sex: '女',
-        age: '34',
-        address: '深圳市南山区'
-      },
-      {
-        name: '小何',
-        sex: '男',
-        age: '27',
-        address: '深圳市南山区'
-      },
-      {
-        name: '小山',
-        sex: '男',
-        age: '18',
-        address: '深圳市南山区'
-      },
-      {
-        name: '小拉',
-        sex: '男',
-        age: '12',
-        address: '深圳市南山区'
-      },
-      {
-        name: '小鹅',
-        sex: '女',
-        age: '48',
-        address: '深圳市南山区'
-      },
-      {
-        name: '小欧',
-        sex: '男',
-        age: '33',
-        address: '深圳市南山区'
-      },
-    ]
+
+    let bodyList = ref<ListItemType[]>([])
     function headClick(prop) {
       isSort = !isSort
       sort(prop, isSort ? '' : 'asc')
     }
 
+    function getList() {
+      axios('user/list').then((res) => {
+        bodyList.value = res.data.list
+        console.log('bodyList', bodyList.value);
+
+      })
+
+    }
+
+    getList()
+
+    // 排序
     function sort(type, order) {
       let table = document.getElementById("tbody");
       let trArr = table?.children;
       let intType;
+      // TODO 目前只做了年龄的排序，后续做到自定义排序
       if (type == "age") {
         intType = 2;
       }
@@ -142,7 +97,7 @@ export default defineComponent({
           </thead>
           <tbody id="tbody">
             {
-              bodyList.map(item => {
+              bodyList.value.map(item => {
                 return <tr class="body-tr">
                   <td class="body-td">{item.name}</td>
                   <td class="body-td">{item.sex}</td>
