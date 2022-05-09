@@ -1,5 +1,6 @@
 import { defineComponent } from "vue";
 import { type TableProps, tableProps, ListItemType } from "./types";
+import SiPagination from './simplePagination/index'
 import axios from 'axios'
 import { ref } from 'vue-demi'
 import './index.less'
@@ -7,6 +8,9 @@ import './index.less'
 export default defineComponent({
   name: "SimpleTable",
   props: tableProps,
+  components: {
+    SiPagination
+  },
   setup(props: TableProps, { attrs, emit, slots }) {
     let isSort = false
     const headList = [
@@ -30,21 +34,22 @@ export default defineComponent({
     ]
 
     let bodyList = ref<ListItemType[]>([])
+    let total = ref<Number>()
+    let pageSize = ref<Number>(10)
+    let current = ref<Number>()
     function headClick(prop) {
       isSort = !isSort
       sort(prop, isSort ? '' : 'asc')
     }
 
-    function getList() {
+    function getList(num) {
+      current.value = num
       axios('user/list').then((res) => {
         bodyList.value = res.data.list
-        console.log('bodyList', bodyList.value);
-
       })
-
     }
 
-    getList()
+    getList(1)
 
     // 排序
     function sort(type, order) {
@@ -80,34 +85,42 @@ export default defineComponent({
     }
     return () => {
       return (
-        <table class="table">
-          <thead >
-            <tr class="head-tr">
+        <div>
+          <table class="table">
+            <thead >
+              <tr class="head-tr">
+                {
+                  headList.map(item => {
+                    return <th class="head-th">
+                      {item.label}
+                      {
+                        item.isSort && <i onClick={() => { headClick(item.prop) }}>^</i>
+                      }
+                    </th>
+                  })
+                }
+              </tr>
+            </thead>
+            <tbody id="tbody">
               {
-                headList.map(item => {
-                  return <th class="head-th">
-                    {item.label}
+                bodyList.value.map(item => {
+                  return <tr class="body-tr">
                     {
-                      item.isSort && <i onClick={() => { headClick(item.prop) }}>^</i>
+                      headList.map(head => {
+                        return <td class="body-td">{item[head.prop]}</td>
+                      })
                     }
-                  </th>
+
+                  </tr>
                 })
               }
-            </tr>
-          </thead>
-          <tbody id="tbody">
-            {
-              bodyList.value.map(item => {
-                return <tr class="body-tr">
-                  <td class="body-td">{item.name}</td>
-                  <td class="body-td">{item.sex}</td>
-                  <td class="body-td">{item.age}</td>
-                  <td class="body-td">{item.address}</td>
-                </tr>
-              })
-            }
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+          <si-pagination total={total.value}
+            pageSize={pageSize.value}
+            current={current.value}
+            onChange={getList}></si-pagination>
+        </div>
       );
     };
   },
