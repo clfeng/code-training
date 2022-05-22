@@ -1,41 +1,38 @@
 <template>
-  <SimpleTable :tableProps="tableProps" />
+  <SimpleTable :columns="columns" :data-source="mock.dataSource" />
 </template>
 
 <script setup lang="ts">
-import  SimpleTable from "./components/SimpleTable.vue";
-import  { reactive  }  from  'vue' ;
+import SimpleTable from "./components/SimpleTable";
+import Mock from "mockjs"
+const columns = [
+  {
+    title: '姓名',
+    dataKey: 'name',
+    key: 'name',
+  },
+  {
+    title: '年龄',
+    dataKey: 'age',
+    key: 'age',
+    sorter: true
+  },
+  {
+    title: '住址',
+    dataKey: 'address',
+    key: 'address',
+  },
+]
 
-const dataSource = [];
 
-for(let i = 0; i < 20; i++){
-  dataSource.push({
-      key: i,
-      name: `胡彦斌${i}`,
-      age: i,
-      address: `西湖区湖底公园${i}号`,
-    })
-}
-
-const tableProps = reactive({
-  dataSource,
-  columns: [
-     {
-       title: '姓名',
-       dataIndex: 'name',
-       key: 'name',
-       sortOrder: true
-     },
-     {
-       title: '年龄',
-       dataIndex: 'age',
-       key: 'age',
-     },
-     {
-       title: '住址',
-       dataIndex: 'address',
-       key: 'address',
-     },
+const mock = Mock.mock({
+  'dataSource|66': [
+    {
+      key: '@id',
+      name: '@cname',
+      age: '@integer(1, 60)',
+      address: '@province @city @county',
+    }
   ]
 })
 

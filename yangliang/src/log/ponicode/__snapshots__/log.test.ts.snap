@@ -1,0 +1,13 @@
+// Vitest Snapshot v1
+
+exports[`log.addLog > 0 1`] = `undefined`;
+
+exports[`log.addLog > 1 1`] = `undefined`;
+
+exports[`log.addLog > 2 1`] = `undefined`;
+
+exports[`log.addLog > 3 1`] = `undefined`;
+
+exports[`log.addLog > 4 1`] = `undefined`;
+
+exports[`log.addLog > 5 1`] = `undefined`;

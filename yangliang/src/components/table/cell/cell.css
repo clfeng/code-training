@@ -1,0 +1,53 @@
+.td-cell{
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.3s;
+    padding: 16px 16px;
+    position: relative;
+    text-align: left;
+}
+
+.th-cell:not(.th-cell:last-child)::before {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 1px;
+    height: 1.6em;
+    background-color: rgba(0, 0, 0, 0.06);
+    transform: translateY(-50%);
+    transition: background-color 0.3s;
+    content: '';
+}
+
+.th-cell {
+    position: relative;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    text-align: left;
+    background: #fafafa;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.3s ease;
+    background: #fafafa;
+    padding: 16px 16px;
+    box-sizing: border-box;
+}
+
+.cell {
+    min-width: 100px;
+}
+
+.cell-order {
+    position: relative;
+    float: right;
+    margin-right: 16px;
+}
+
+.desc-order {
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+}
+
+.asc-order { 
+    position: absolute;
+    cursor: pointer;
+}
