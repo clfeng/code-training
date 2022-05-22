@@ -2,7 +2,13 @@ import { PaginationProps } from '../typs'
 import { toRefs, computed } from 'vue'
 
 export default function usePage(props: PaginationProps) {
-    let { pageCount, currentPage, pagerCount } = toRefs(props)
+    let { total, pageSize, currentPage, pagerCount } = toRefs(props)
+
+    //当前总页数
+    let pageCount = computed(() => {
+        return Math.ceil(total.value / pageSize.value)
+    })
+
     //处理当前显示的分页按钮
     let pagers = computed(() => {
         //分页按钮开始的位置
@@ -27,5 +33,5 @@ export default function usePage(props: PaginationProps) {
         }
         return pages
     })
-    return { pagers, currentPage }
+    return { pageCount, pagers, currentPage }
 }

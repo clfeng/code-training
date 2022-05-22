@@ -11,7 +11,8 @@ const login = {
             username: '@cname',
             email: '@email',
             phone: /^1[385][1-9]\d{8}/,
-            role: 0,
+            "role|1": [0,1,2],
+            "sex|1": [0,1,2,3],
             addr: '@cparagraph',
             createTime: '@integer',
             updateTime: '@integer'

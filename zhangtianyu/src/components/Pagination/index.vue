@@ -1,7 +1,8 @@
 <script setup lang="ts">
 //多写了一个分页props类型，使用defineProps定义类型时，类型必需写在当前页面，导入的类型会报错
 interface PaginationProps {
-  pageCount?: number;
+  total?: number;
+  pageSize?: number;
   currentPage?: number;
   pagerCount?: number;
 }
@@ -14,16 +15,21 @@ import { paginationListener } from "./const";
 const emit = defineEmits(paginationListener);
 
 const props = withDefaults(defineProps<PaginationProps>(), {
-  pageCount: 10,
+  total: 10,
+  pageSize: 10,
   currentPage: 1,
   pagerCount: 7,
 });
 
 //处理需要显示的分页按钮
-let { pagers, currentPage } = usePage(props);
+let { pageCount, pagers, currentPage } = usePage(props);
 
 //处理分页接收的事件
-let { changeCurrentPage, nextPage, prePage } = usePageListener(props, emit);
+let { changeCurrentPage, nextPage, prePage } = usePageListener(
+  currentPage,
+  pageCount,
+  emit
+);
 </script>
 
 <template>
