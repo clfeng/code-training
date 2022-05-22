@@ -1,4 +1,4 @@
-import { defineComponent, ref, computed, reactive, onMounted } from "vue";
+import { defineComponent, onErrorCaptured, computed, reactive, onMounted } from "vue";
 import HeaderRow from "./table/headerRow/HeaderRow";
 import BodyRow from "./table/bodyRow/BodyRow"
 import Pagination from "./pagination/Pagination";
@@ -15,6 +15,10 @@ import { addLog } from '../log/log';
 type TableProps = {
     columns: Column[];
     dataSource: any[];
+    pageSize: number;
+    currentPage: number;
+    total: number;
+    paginationChange: () => {}
 }
 
 
@@ -22,7 +26,11 @@ export default defineComponent({
   name: "SimpleTable",
   props: [
     'columns',
-    'dataSource'
+    'dataSource',
+    'pageSize',
+    'currentPage',
+    'total',
+    'paginationChange'
   ],
   setup(props: TableProps, { attrs, emit, slots }) {
     
@@ -35,52 +43,26 @@ export default defineComponent({
           msg: 'Some One Use SimpleTable Component'
         }
       })
+    })
 
-
-      // 监听错误日志  
-      window.addEventListener('error', (err) => {
-        addLog({ level: "error", message:{
+    onErrorCaptured((err) => {
+      addLog({
+        level: "error",
+        message: {
           component: "SimpleTable",
           props,
-          err: err
-        }})
-
-        // 错误捕获时应立即将错误上传至服务器并通知相关技术人员
-        // axios({
-        //   url: '日志服务器',
-        //   data: err
-        // })
+          msg: err
+        }
       })
     })
 
-    // 监听promise报错日志
-    window.addEventListener('unhandledrejection', (err) => {
-      addLog({ level: "error", message:{
-        component: "SimpleTable",
-        props,
-        promiseErr: err
-      }})
-      // 错误捕获时应立即将错误上传至服务器并通知相关技术人员
-        // axios({
-        //   url: '日志服务器',
-        //   data: err
-        // })
-    })
-
-    const paginationClick = (page:number) => {
-      currentPage.value = page;
-    }
-    const currentPage = ref(1),
-          pageSize = ref(10);
     let currentSorter = reactive({
             key: '',
             asc: true
           });
 
     const bodyRows = computed(() =>{ 
-        const start = (currentPage.value - 1) * pageSize.value, 
-              end = currentPage.value * pageSize.value,
-              currentRow = props.dataSource.slice(start, end);
+        const currentRow = props.dataSource;
         if(currentSorter.key) {
           if(currentSorter.asc){
             currentRow.sort((a,b) => a[currentSorter.key] - b[currentSorter.key]);
@@ -107,7 +89,7 @@ export default defineComponent({
               {bodyRows.value}
             </tbody>
           </table>
-          <Pagination total={props.dataSource.length} current={currentPage.value} change={paginationClick} />
+          <Pagination total={props.total} current={props.currentPage} change={props.paginationChange} />
         </div>
       );
     };

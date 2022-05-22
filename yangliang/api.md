@@ -2,34 +2,19 @@
 
 ``` html
 <template>
-  <SimpleTable :columns="columns" :data-source="mock.dataSource" />
+    <SimpleTable :columns="columns" 
+               :data-source="getDataSource"
+               :current-page="currentPage"
+               :page-size="pageSize"
+               :total="mock.dataSource.length"
+               :pagination-change="paginationClick" />
 </template>
 
 <script setup lang="ts">
 import SimpleTable from "./components/SimpleTable";
 import Mock from "mockjs"
-const columns = [
-  {
-    title: '姓名',
-    dataKey: 'name',
-    key: 'name',
-  },
-  {
-    title: '年龄',
-    dataKey: 'age',
-    key: 'age',
-    sorter: true
-  },
-  {
-    title: '住址',
-    dataKey: 'address',
-    key: 'address',
-  },
-]
-
-
 const mock = Mock.mock({
-  'dataSource|30': [
+  'dataSource|66': [
     {
       key: '@id',
       name: '@cname',
@@ -38,6 +23,19 @@ const mock = Mock.mock({
     }
   ]
 })
+
+const currentPage = ref(1);
+const pageSize = ref(10);
+
+const getDataSource = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value, 
+        end = currentPage.value * pageSize.value;
+  return mock.dataSource.slice(start, end);
+});
+
+const paginationClick = (page:number) => {
+   currentPage.value = page;
+}
 </script>
 
 ```
@@ -52,6 +50,11 @@ Table Api
 | columns | 表格列的配置 | Column[] | [] |
 | pagination | 分页配置 | Pagination | false | false|
 | dataSource | 数据源的数组 | Array | - |
+| current | 当前页 | v-model/number | - |
+| pageSize | 每页条数 | number | - |
+| total | 数据总数 | number | - |
+｜ paginationChange ｜ 分页页码改变的回调 ｜ Function ｜ - ｜
+
 
 
 Column api

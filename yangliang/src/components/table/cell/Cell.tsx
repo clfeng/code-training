@@ -1,4 +1,4 @@
-import { defineComponent, ExtractPropTypes, onMounted } from "vue";
+import { defineComponent, ExtractPropTypes, onErrorCaptured, onMounted } from "vue";
 import { addLog } from "../../../log/log";
 import './cell.css';
 
@@ -20,7 +20,7 @@ export const cellProps = {
     }
   }
   
-  export type CellProps = ExtractPropTypes<typeof cellProps>;
+export type CellProps = ExtractPropTypes<typeof cellProps>;
 
 export default defineComponent({
     name: "Cell",
@@ -36,6 +36,18 @@ export default defineComponent({
               }
             })
           })
+        
+          onErrorCaptured((err) => {
+            addLog({
+              level: "error",
+              message: {
+                component: "Cell",
+                props,
+                msg: err
+              }
+            })
+          })
+
         const Component: any = props.component;
         const cellattrs = {
             class: `${Component}-cell cell`

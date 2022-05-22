@@ -1,4 +1,4 @@
-import { defineComponent, ref, computed, onMounted } from "vue";
+import { defineComponent, ref, computed, onMounted, onErrorCaptured } from "vue";
 import { addLog } from "../../log/log";
 import { type PaginationProps, paginationProps } from "../types";
 import Pager from './pager/Pager';
@@ -15,6 +15,17 @@ export default defineComponent({
             component: "Pagination",
             props,
             msg: 'Some One Use Pagination Component'
+          }
+        })
+      })
+
+      onErrorCaptured((err) => {
+        addLog({
+          level: "error",
+          message: {
+            component: "Pagination",
+            props,
+            msg: err
           }
         })
       })
