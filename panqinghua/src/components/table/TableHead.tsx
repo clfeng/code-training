@@ -1,15 +1,20 @@
 import { defineComponent } from "vue";
-import { type TableHeadProps, tableHeadProps,ColumnType } from "./types";
+import { type TableHeadProps, tableHeadProps, ColumnType } from "./types";
+import { INFO } from "./../../util/logger"
 import classnames from "classnames";
+import TableHeadCell from "./TableHeadCell";
 export default defineComponent({
     name: "TableHead",
     props: tableHeadProps,
     emits: ["sort"],
     setup(props: TableHeadProps,{emit}) {
+        //排序需要重新在hook引入
         let sort = (item: ColumnType)=>{
+            INFO({msg:'点击触发'});
             item.sort = item.sort === 'reversal' ? 'ordinal': 'reversal';
             emit('sort',item);
         }
+        //清除排序
         let clearSort = () =>{
             props.columns.map(item=>{
                 item.sort = 'disorder'
@@ -21,36 +26,24 @@ export default defineComponent({
             }
             sort(item);
         }
+
         return () => {
             return (
                 <>
                     <thead>
-                        <a
-                        class="pagination-previous"
-                        onClick={() => clearSort()}
-                        >
-                        重置排序
-                        </a>
                         <tr>
                             {props.columns.map((item) => {
                                 return (
-                                    <td>
-                                        <div key={item.key}>
-                                            <span title={item.title}>
-                                                {item.title}
-                                            </span>
-                                            <span class={classnames("iconfont","icon-shangjiantou", {
-                                                  "icon-xiajiantou": item.sort === 'reversal'})}
-                                                  onClick={() => sort(item)}
-                                                  v-show={item?.isSort}></span>
-                                        </div>
-                                    </td>
+                                    <TableHeadCell 
+                                    column={item}
+                                    onSortChange={(val)=>sort(val)}/>
                                 );
                             })}
                         </tr>
                     </thead>
                 </>
             );
-        };
+        }
     },
+
 });

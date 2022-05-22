@@ -1,10 +1,11 @@
-import { defineComponent, provide, ref } from "vue";
+import { defineComponent, provide,ref,reactive } from "vue";
 import { type TableProps, tableProps,ColumnType } from "./types";
 import TableHead from "./TableHead"
 import TableBody from "./TableBody";
 import Pagination from "../pagination";
 import { TABLE_PROPS } from "./const"
 import { usePagination } from "../hooks/usePagination"
+import { INFO } from "../../util/logger"
 export default defineComponent({
   name: "SimpleTable",
   props: tableProps,

@@ -1,31 +1,29 @@
-import { defineComponent, inject } from "vue";
+import { defineComponent, inject, watch } from "vue";
 import { TABLE_PROPS } from "./const"
 import { useTable } from "../hooks/useTable"
-import lodashIsString from 'lodash/isString'
+import { TRACE } from "../../util/logger"
+import TableBodyCell from "./TableBodyCell";
 export default defineComponent({
     name: "TableBody",
     setup() {
-
         let { props, current,item } = inject(TABLE_PROPS)!
         let { renderList } = useTable(props, current,item)
+        let rowOnClick = ()=>{
+            TRACE({msg: '点击行触发',event:'click'});
+        }
         return () => {
             return (
                 <>
                     <tbody>
                         {renderList.value.map((row) => {
                             return (
-                                <tr key={props.rowKey(row)}>
-                                    {props.columns.map((cell) => {
-                                        return cell.render ? (
-                                            <td key={cell.key}>{lodashIsString(cell.render)?cell.render:cell.render(row)}</td>
-                                        ) : (
-                                            <td key={cell.key} title={row[cell.key]}>
-                                                {row[cell.key]}
-                                            </td>
-                                        );
-                                    })}
-                                </tr>
+                                <TableBodyCell
+                                    row={row}
+                                    column={props.columns}
+                                    rowKey={props.rowKey}
+                                    onrowOnClick={(val)=>rowOnClick(val)}/>
                             );
+                            
                         })}
                     </tbody>
                 </>
