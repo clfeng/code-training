@@ -1,16 +1,21 @@
 // Vitest Snapshot v1
 
 exports[`mount component 1`] = `
-"<table>
-  <thead>
-    <th>
-    <td></td>
-    </th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>hello table</td>
-    </tr>
-  </tbody>
-</table>"
+"<div>
+      <table>
+        <thead>
+         <header-row-stub columns=\\"[object Object],[object Object],[object Object]\\" sorter=\\"(key, asc) => {
+         currentSorter.key = key;
+         currentSorter.asc = asc;
+       }\\"></header-row-stub>
+       </thead>
+       <tbody>
+         <body-row-stub columns=\\"[object Object],[object Object],[object Object]\\" record=\\"[object Object]\\"></body-row-stub>
+         <body-row-stub columns=\\"[object Object],[object Object],[object Object]\\" record=\\"[object Object]\\"></body-row-stub>
+        </tbody>
+      </table>
+      <pagination-stub current=\\"1\\" disabled=\\"false\\" hideonsinglepage=\\"false\\" pagesize=\\"10\\" showtotal=\\"false\\" total=\\"…
+          currentPage.value = page;
+        }\\" showpre=\\"false\\" shownext=\\"false\\"></pagination-stub>
+    </div>"
 `;
