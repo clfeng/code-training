@@ -1,6 +1,7 @@
 import { defineComponent, ref } from "vue";
-import { type TableProps, tableProps, ListItemType } from "@/types/table";
 import SiPagination from '../simplePagination/index'
+import { type TableProps, tableProps, ListItemType } from "@/types/table";
+import useTableColumn from '@/hooks/useTable/useTableColumns'
 
 import './index.less'
 
@@ -10,14 +11,21 @@ export default defineComponent({
     data: {
       type: Array,
       default: []
-    }
+    },
+    pagination: {
+      type: Object,
+      defalut: () => ({
+        total: 10,
+        pageSize: 10,
+        current: 1
+      })
+    },
   },
   components: {
     SiPagination
   },
   setup(props, { attrs, emit, slots }) {
 
-    let isSort = false
     const headList = [
       {
         prop: 'name',
@@ -37,32 +45,24 @@ export default defineComponent({
         label: '地址'
       }
     ]
-
-    // let bodyList = ref<ListItemType[]>([])
-    let total = ref<Number>()
-    let pageSize = ref<Number>(10)
-    let current = ref<Number>()
     function headClick(prop) {
-      isSort = !isSort
+      // isSort = !isSort
       // 排序
+      console.trace('暂未提供排序功能')
     }
+
+    function handlePaginationChange(current: Number) {
+      // 暂时只做了页数切换，每页的条数未做
+      emit('change', current)
+    }
+    const [dataColumns] = useTableColumn(slots.defalut)
 
     return () => {
       return <div>
         <table class="table">
           <thead >
-            <tr class="head-tr">
-              {
-                headList.map(item => {
-                  return <th class="head-th">
-                    {item.label}
-                    {/* {
-                      item.isSort && <i onClick={() => { headClick(item.prop) }}>^</i>
-                    } */}
-                  </th>
-                })
-              }
-            </tr>
+            {/* 表头组件 */}
+            <si-thead dataColumns={dataColumns}></si-thead>
           </thead>
           <tbody id="tbody">
             {
@@ -79,10 +79,10 @@ export default defineComponent({
             }
           </tbody>
         </table>
-        {/* <si-pagination total={total.value}
-          pageSize={pageSize.value}
-          current={current.value}
-          onChange={getList}></si-pagination> */}
+        <si-pagination total={props.pagination.total}
+          pageSize={props.pagination.pageSize}
+          current={props.pagination.current}
+          onChange={handlePaginationChange}></si-pagination>
       </div>
 
       // 记录
