@@ -1,10 +1,10 @@
-import { defineComponent, provide,ref,reactive } from "vue";
+import { defineComponent, provide,ref } from "vue";
 import { type TableProps, tableProps,ColumnType } from "./types";
 import TableHead from "./TableHead"
 import TableBody from "./TableBody";
 import Pagination from "../pagination";
 import { TABLE_PROPS } from "./const"
-import { usePagination } from "../hooks/usePagination"
+import { usePageListener } from "../hooks/usePageListener"
 import { INFO } from "../../util/logger"
 export default defineComponent({
   name: "SimpleTable",
@@ -15,40 +15,41 @@ export default defineComponent({
     TableHead
   },
   setup(props: TableProps) {
-    let { dataSource, pageSize } = props
-    let { current, onPageChange } = usePagination()
-    let item = ref({
+    let { data, pageSize } = props
+    let { current, onPageChange } = usePageListener()
+    // 排序响应后触发的列
+    let columnItem = ref({
       key:'',
       title:''
     })
-    let tableData = {
-      current,
-      props,
-      item,
+    let updateSortItem = (items:ColumnType)=>{
+      columnItem.value = items;
     }
-    let sort = (items:ColumnType)=>{
-      item.value = items;
+    let tableData = {
+      props,
+      current,
+      columnItem,
     }
     // 提供给body使用
     provide(TABLE_PROPS, tableData)
     return () => {
 
       return (
-        <>
+        <div>
           <table class="is-bordered is-hoverable is-fullwidth table">
             <TableHead 
               columns={props.columns} 
-              onSort={(val) => sort(val)}
+              onUpdateSortItem={(val) => updateSortItem(val)}
             ></TableHead>
             <TableBody></TableBody>
           </table>
           <Pagination
-            total={dataSource.length}
+            total={data.length}
             current={current.value}
             pageSize={pageSize}
             onChange={(val) => onPageChange(val)}
           ></Pagination>
-        </>
+        </div>
       );
     };
   },
