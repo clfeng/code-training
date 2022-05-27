@@ -1,6 +1,6 @@
 import { defineComponent, onErrorCaptured, computed, reactive, onMounted } from "vue";
-import HeaderRow from "./table/headerRow/HeaderRow";
-import BodyRow from "./table/bodyRow/BodyRow"
+import TableHeader from "./table/tableHeader/tableHeader";
+import TableBody from "./table/TableBody/TableBody"
 import Pagination from "./pagination/Pagination";
 import { Column } from "./types";
 import { addLog } from '../log/log';
@@ -57,22 +57,21 @@ export default defineComponent({
     })
 
     let currentSorter = reactive({
-            key: '',
-            asc: true
-          });
+      key: '',
+      asc: true
+    });
 
-    const bodyRows = computed(() =>{ 
-        const currentRow = props.dataSource;
-        if(currentSorter.key) {
-          if(currentSorter.asc){
-            currentRow.sort((a,b) => a[currentSorter.key] - b[currentSorter.key]);
-          } else {
-            currentRow.sort((a,b) => b[currentSorter.key] - a[currentSorter.key]);
-          }
-        }      
-        const rows = currentRow.map((row, i) => <BodyRow columns={props.columns} record={row} key={`${row.key}${i}`} />);
-        return rows
-       });
+    const getSortedDataSource = computed(() =>{ 
+      const currentDataSource = props.dataSource;
+      if(currentSorter.key) {
+        if(currentSorter.asc){
+          currentDataSource.sort((a,b) => a[currentSorter.key] - b[currentSorter.key]);
+        } else {
+          currentDataSource.sort((a,b) => b[currentSorter.key] - a[currentSorter.key]);
+        }
+      }      
+      return currentDataSource;
+    });
     const sorter = (key: string, asc: boolean) => {
       currentSorter.key = key;
       currentSorter.asc = asc;
@@ -82,14 +81,10 @@ export default defineComponent({
       return (
         <div>
           <table>
-            <thead>
-              <HeaderRow columns={props.columns} sorter={sorter} />
-            </thead>
-            <tbody>
-              {bodyRows.value}
-            </tbody>
+            <TableHeader columns={props.columns} sorter={sorter} />
+            <TableBody columns={props.columns}  dataSource={getSortedDataSource.value} />
           </table>
-          <Pagination total={props.total} current={props.currentPage} change={props.paginationChange} />
+          <Pagination total={props.total} current={props.currentPage} onChange={props.paginationChange} />
         </div>
       );
     };

@@ -59,7 +59,7 @@ export const paginationProps = {
     type: Boolean,
     default: false
   },
-  change: {
+  onChange: {
     type: Function,
     default:(page:number) => {}
   },
@@ -97,4 +97,10 @@ export type Column = {
   title: string,
   key: string,
   sorter: boolean
+}
+
+
+export type Data = {
+  total:number, 
+  dataSource: any[]
 }

@@ -6,9 +6,9 @@ import { addLog } from "../../../log/log";
 
 
 export interface BodyRowProps {
-    columns: Column[];
-    record: any;
-  }
+  columns: Column[];
+  record: any;
+}
 
 
 export default defineComponent({

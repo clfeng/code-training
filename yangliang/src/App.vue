@@ -1,18 +1,18 @@
 <template>
   <SimpleTable :columns="columns" 
-               :data-source="getDataSource"
+               :data-source="data.dataSource"
                :current-page="currentPage"
                :page-size="pageSize"
-               :total="mock.dataSource.length"
+               :total="data.total"
                :pagination-change="paginationClick" />
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, reactive } from 'vue';
 import SimpleTable from "./components/SimpleTable";
 import Mock from "mockjs"
 import { addLog } from './log/log';
-import { computed } from '@vue/reactivity';
+import { Data } from './components/types'
 // import { addLog } from "./log/log";
 const columns = [
   {
@@ -44,10 +44,10 @@ function handleError (err: any) {
       // })
 }
 
-
-// 当前使用假数据，如需要远程分页的话，在每次分页函数执行时调用后端接口，更新传入组件的dataSource
-const mock = Mock.mock({
-  'dataSource|66': [
+const generateData = (page:number, pageSize:number):Data => {
+  return Mock.mock({
+  'total': 66,
+  [`dataSource|${pageSize}`]: [
     {
       key: '@id',
       name: '@cname',
@@ -56,18 +56,24 @@ const mock = Mock.mock({
     }
   ]
 })
+}
+
 
 const currentPage = ref(1);
 const pageSize = ref(10);
 
-const getDataSource = computed(() => {
-  const start = (currentPage.value - 1) * pageSize.value, 
-        end = currentPage.value * pageSize.value;
-  return mock.dataSource.slice(start, end);
-});
+const data = reactive(generateData(1, 10));
+
 
 const paginationClick = (page:number) => {
-   currentPage.value = page;
+  currentPage.value = Number(page);
+  getData(page, 10)
+}
+
+const getData = (page:number, pageSize:number) => {
+  const { total, dataSource } = generateData(page, pageSize);
+  data.total = total;
+  data.dataSource = dataSource;
 }
 
 

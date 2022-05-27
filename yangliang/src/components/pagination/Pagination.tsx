@@ -30,14 +30,14 @@ export default defineComponent({
         })
       })
       const currentPage = ref(props.current);
-      const allPages = ref(Math.ceil(props.total / props.pageSize));
+      const pageCount = ref(Math.ceil(props.total / props.pageSize));
       const pagesList = computed(() => {
       const tempPageList = [];
-        for (let i = 0; i < allPages.value; i++) {
+        for (let i = 0; i < pageCount.value; i++) {
           tempPageList.push(<Pager key={i + 1} 
                                    page={i + 1}
                                    onClick={(page:number) => {
-                                      props.change(page);
+                                      emit('change', page);
                                       currentPage.value = page;
                                    }}
                                    active={currentPage.value === i + 1} />);
@@ -45,28 +45,34 @@ export default defineComponent({
         return tempPageList
       });
       const preClick = () => {
-        currentPage.value > 1 ? currentPage.value -= 1 : '';
-        props.change(currentPage.value);
+        if(currentPage.value > 1){
+          currentPage.value -= 1;
+          emit('change', currentPage.value);
+        }
       }
       const nextClick = () => {
-        currentPage.value < allPages.value ? currentPage.value += 1 : '';
-        props.change(currentPage.value);
+        if(currentPage.value < pageCount.value){
+          currentPage.value += 1;
+          emit('change', currentPage.value);
+        }
       }
       const preDisabled = computed(() => {
         return currentPage.value === 1 ? 'disabled' : '';
       })
       const nextDisabled = computed(() => {
-        return currentPage.value === allPages.value ? 'disabled' : '';
+        return currentPage.value === pageCount.value ? 'disabled' : '';
       })
       let timer: any = null;
       
       const showSizeChange = (e: Event) => {
         timer = setTimeout(() => {
-          typeof timer === 'number' ? clearTimeout(timer) : '';
-          const page = (e.target as any)?.value;
-          if(typeof page !== 'number' && page >= 1 && page <= allPages.value) {
-            currentPage.value = page;
-            props.change(page);
+          if(typeof timer === 'number'){
+            clearTimeout(timer)
+            const page = (e.target as any)?.value;
+            if(typeof page !== 'number' && page >= 1 && page <= pageCount.value) {
+              currentPage.value = page;
+              emit('change', currentPage.value);
+            }
           }
         },300);
       }

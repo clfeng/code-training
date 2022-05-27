@@ -6,9 +6,9 @@ import { addLog } from "../../../log/log";
 
 
 export interface HeaderRowProps {
-    columns: readonly Column[];
-    sorter: (key: string, asc: boolean) => void;
-  }
+  columns: readonly Column[];
+  sorter: (key: string, asc: boolean) => void;
+}
 
 
 export default defineComponent({
