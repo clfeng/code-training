@@ -16,7 +16,7 @@ const userList = {
       age: '@integer(0,100)',
       // updateTime: '@integer'
     }],
-    total: '43',
+    total: 43,
     pageSize: 10,
     'current|1': [1, 2, 3, 4, 5],
 

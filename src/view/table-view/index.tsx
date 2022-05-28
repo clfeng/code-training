@@ -1,5 +1,5 @@
 import SimpleTable from '@/components/simpleTable';
-import SimpleColumn from '@/components/simpleColumn'
+import SimpleColumn from '@/components/simpleColumn/index.ts'
 import { defineComponent, ref } from "vue";
 import { ListItemType } from "@/types/table";
 import { PaginationProps } from "@/types/pagination";
@@ -21,14 +21,32 @@ export default defineComponent({
     let dataSource = ref<ListItemType[]>([])
     let pagination = ref<PaginationProps>({})
 
+    const headList = [
+      {
+        prop: 'name',
+        label: '姓名',
+      },
+      {
+        prop: 'sex',
+        label: '性别'
+      },
+      {
+        prop: 'age',
+        label: '年龄',
+        isSort: true
+      },
+      {
+        prop: 'address',
+        label: '地址'
+      }
+    ]
+
     function getList(cur: number = 1) {
       current.value = cur
       axios.post('/user/list', {
         current: cur
       }
       ).then(({ data }) => {
-        console.log('dada', data);
-
         dataSource.value = data.list
         pagination.value = {
           total: data.total,
@@ -45,7 +63,8 @@ export default defineComponent({
       return (
         <simple-table data={dataSource.value}
           pagination={pagination.value}
-          onChange={getList} >
+          onChange={getList}
+          columns={headList} >
           <simple-column prop="name" label="姓名" />
           <simple-column prop="sex" label="性别" />
           <simple-column prop="age" label="年龄" />
