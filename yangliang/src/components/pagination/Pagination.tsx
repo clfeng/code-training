@@ -1,12 +1,27 @@
 import { defineComponent, ref, computed, onMounted, onErrorCaptured } from "vue";
 import { addLog } from "../../log/log";
-import { type PaginationProps, paginationProps } from "../types";
 import Pager from './pager/Pager';
 import './pagination.css';
 
+export type PaginationProps = {
+  current: number;
+  pageSize: number;
+  total: number;
+  showSizeChange: () => {};
+  showQuickJumper: boolean;
+  onChange: (page:number) => {};
+}
+
 export default defineComponent({
     name: "Pagination",
-    props: paginationProps,
+    props: [
+      'current',
+      'pageSize',
+      'total',
+      'showSizeChange',
+      'showQuickJumper',
+      'onChange',
+    ],
     setup(props: PaginationProps, { attrs, emit, slots }) {
       onMounted(()=>{
         addLog({
@@ -40,7 +55,7 @@ export default defineComponent({
                                       emit('change', page);
                                       currentPage.value = page;
                                    }}
-                                   active={currentPage.value === i + 1} />);
+                                   active={Number(currentPage.value) === (i + 1)} />);
         }
         return tempPageList
       });
@@ -81,8 +96,7 @@ export default defineComponent({
         return (
           <ul>
             <li class={`pager ${preDisabled.value}`} 
-                onClick={preClick}
-            >
+                onClick={preClick}>
               <svg focusable="false" class="pre" data-icon="left" width="1em" height="1em" fill="currentColor" aria-hidden="true" viewBox="64 64 896 896"><path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z">
                 </path>
               </svg>
@@ -97,7 +111,7 @@ export default defineComponent({
                 </svg>
             </li>
             {
-              props.showSizeChanger && 
+              props.showQuickJumper && 
               <div class="show-quick-jumper">
                 跳至<input type="text" onInput={showSizeChange} />页
               </div>

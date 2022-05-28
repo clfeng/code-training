@@ -4,7 +4,8 @@
                :current-page="currentPage"
                :page-size="pageSize"
                :total="data.total"
-               :pagination-change="paginationClick" />
+               :pagination-change="paginationClick"
+               :show-quick-jumper="true" />
 </template>
 
 <script setup lang="ts">

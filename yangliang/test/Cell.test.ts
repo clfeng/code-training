@@ -5,11 +5,13 @@ import Cell from "../src/components/table/cell/Cell";
 test("mount component", () => {
     const wrapper = shallowMount(Cell, {
       props: {
-        column:{
+        column:[
+          {
             title: '姓名',
             dataKey: 'name',
             key: 'name',
-        },
+          }
+        ],
         record: {
             name: '张三',
             age: 18,
@@ -21,6 +23,6 @@ test("mount component", () => {
     });
   
     expect(wrapper.html()).toMatchSnapshot();
-  });
+});
   
 

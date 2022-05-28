@@ -1,9 +1,10 @@
 import { defineComponent, onErrorCaptured, computed, reactive, onMounted } from "vue";
-import TableHeader from "./table/tableHeader/tableHeader";
-import TableBody from "./table/TableBody/TableBody"
+import TableHeader from "./table/header/tableHeader/tableHeader";
+import TableBody from "./table/body/tableBody/TableBody"
 import Pagination from "./pagination/Pagination";
 import { Column } from "./types";
 import { addLog } from '../log/log';
+import { useSorter } from '../hook/useSorter';
 // import log4js from "log4js";
 // log4js.configure({
 //   appenders: { cheese: { type: "file", filename: "cheese.log" } },
@@ -18,7 +19,8 @@ type TableProps = {
     pageSize: number;
     currentPage: number;
     total: number;
-    paginationChange: () => {}
+    showQuickJumper: boolean;
+    paginationChange: () => {};
 }
 
 
@@ -30,6 +32,7 @@ export default defineComponent({
     'pageSize',
     'currentPage',
     'total',
+    'showQuickJumper',
     'paginationChange'
   ],
   setup(props: TableProps, { attrs, emit, slots }) {
@@ -63,14 +66,7 @@ export default defineComponent({
 
     const getSortedDataSource = computed(() =>{ 
       const currentDataSource = props.dataSource;
-      if(currentSorter.key) {
-        if(currentSorter.asc){
-          currentDataSource.sort((a,b) => a[currentSorter.key] - b[currentSorter.key]);
-        } else {
-          currentDataSource.sort((a,b) => b[currentSorter.key] - a[currentSorter.key]);
-        }
-      }      
-      return currentDataSource;
+      return useSorter(currentDataSource, currentSorter); 
     });
     const sorter = (key: string, asc: boolean) => {
       currentSorter.key = key;
@@ -84,7 +80,11 @@ export default defineComponent({
             <TableHeader columns={props.columns} sorter={sorter} />
             <TableBody columns={props.columns}  dataSource={getSortedDataSource.value} />
           </table>
-          <Pagination total={props.total} current={props.currentPage} onChange={props.paginationChange} />
+          <Pagination total={props.total}
+                      pageSize={props.pageSize}
+                      current={props.currentPage}
+                      show-quick-jumper={props.showQuickJumper}
+                      onChange={props.paginationChange} />
         </div>
       );
     };

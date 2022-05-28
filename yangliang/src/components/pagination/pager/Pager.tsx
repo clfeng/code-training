@@ -1,11 +1,20 @@
 import { defineComponent, onMounted } from "vue";
 import { addLog } from "../../../log/log";
-import { type PagerProps, pagerProps } from "../../types";
 import './pager.css';
+
+type PagerProps = {
+  page: number;
+  onClick: (page: number) => void;
+  active: boolean;
+}
 
 export default defineComponent({
     name: "Pager",
-    props: pagerProps,
+    props: [
+      'page',
+      'onClick',
+      'active'
+    ],
     setup(props: PagerProps, { attrs, emit, slots }) {
       onMounted(()=>{
         addLog({
@@ -17,8 +26,6 @@ export default defineComponent({
           }
         })
       })
-
-      const className = props.active ? 'active' : ''
     
       return () => {
         return (
