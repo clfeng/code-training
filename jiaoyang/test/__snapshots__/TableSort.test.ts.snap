@@ -1,0 +1,271 @@
+// Vitest Snapshot v1
+
+exports[`sort: build-in sort 1`] = `
+"<div class=\\"table\\">
+  <table class=\\"table__table\\">
+    <thead>
+      <tr>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Name</span>
+          <!---->
+        </th>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Age</span><span class=\\"table__header-cell_sort\\"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Bob</span></td>
+        <td class=\\"table__body-cell\\"><span>27</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Tom</span></td>
+        <td class=\\"table__body-cell\\"><span>20</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Alice</span></td>
+        <td class=\\"table__body-cell\\"><span>23</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <!---->
+</div>"
+`;
+
+exports[`sort: build-in sort 2`] = `
+"<div class=\\"table\\">
+  <table class=\\"table__table\\">
+    <thead>
+      <tr>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Name</span>
+          <!---->
+        </th>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Age</span><span class=\\"table__header-cell_sort\\"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Bob</span></td>
+        <td class=\\"table__body-cell\\"><span>27</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Tom</span></td>
+        <td class=\\"table__body-cell\\"><span>20</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Alice</span></td>
+        <td class=\\"table__body-cell\\"><span>23</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <!---->
+</div>"
+`;
+
+exports[`sort: build-in sort 3`] = `
+"<div class=\\"table\\">
+  <table class=\\"table__table\\">
+    <thead>
+      <tr>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Name</span>
+          <!---->
+        </th>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Age</span><span class=\\"table__header-cell_sort\\"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Bob</span></td>
+        <td class=\\"table__body-cell\\"><span>27</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Tom</span></td>
+        <td class=\\"table__body-cell\\"><span>20</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Alice</span></td>
+        <td class=\\"table__body-cell\\"><span>23</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <!---->
+</div>"
+`;
+
+exports[`sort: build-in sort 4`] = `
+"<div class=\\"table\\">
+  <table class=\\"table__table\\">
+    <thead>
+      <tr>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Name</span>
+          <!---->
+        </th>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Age</span><span class=\\"table__header-cell_sort\\"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Bob</span></td>
+        <td class=\\"table__body-cell\\"><span>27</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Tom</span></td>
+        <td class=\\"table__body-cell\\"><span>20</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Alice</span></td>
+        <td class=\\"table__body-cell\\"><span>23</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <!---->
+</div>"
+`;
+
+exports[`sort: custom sort 1`] = `
+"<div class=\\"table\\">
+  <table class=\\"table__table\\">
+    <thead>
+      <tr>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Name</span>
+          <!---->
+        </th>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Age</span><span class=\\"table__header-cell_sort\\"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Bob</span></td>
+        <td class=\\"table__body-cell\\"><span>27</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Tom</span></td>
+        <td class=\\"table__body-cell\\"><span>20</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Alice</span></td>
+        <td class=\\"table__body-cell\\"><span>23</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <!---->
+</div>"
+`;
+
+exports[`sort: custom sort 2`] = `
+"<div class=\\"table\\">
+  <table class=\\"table__table\\">
+    <thead>
+      <tr>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Name</span>
+          <!---->
+        </th>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Age</span><span class=\\"table__header-cell_sort\\"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Bob</span></td>
+        <td class=\\"table__body-cell\\"><span>27</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Tom</span></td>
+        <td class=\\"table__body-cell\\"><span>20</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Alice</span></td>
+        <td class=\\"table__body-cell\\"><span>23</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <!---->
+</div>"
+`;
+
+exports[`sort: custom sort 3`] = `
+"<div class=\\"table\\">
+  <table class=\\"table__table\\">
+    <thead>
+      <tr>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Name</span>
+          <!---->
+        </th>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Age</span><span class=\\"table__header-cell_sort\\"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Bob</span></td>
+        <td class=\\"table__body-cell\\"><span>27</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Tom</span></td>
+        <td class=\\"table__body-cell\\"><span>20</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Alice</span></td>
+        <td class=\\"table__body-cell\\"><span>23</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <!---->
+</div>"
+`;
+
+exports[`sort: custom sort 4`] = `
+"<div class=\\"table\\">
+  <table class=\\"table__table\\">
+    <thead>
+      <tr>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Name</span>
+          <!---->
+        </th>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Age</span><span class=\\"table__header-cell_sort\\"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Bob</span></td>
+        <td class=\\"table__body-cell\\"><span>27</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Tom</span></td>
+        <td class=\\"table__body-cell\\"><span>20</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Alice</span></td>
+        <td class=\\"table__body-cell\\"><span>23</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <!---->
+</div>"
+`;
+
+exports[`sort: remote sort 1`] = `
+"<div class=\\"table\\">
+  <table class=\\"table__table\\">
+    <thead>
+      <tr>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Name</span>
+          <!---->
+        </th>
+        <th class=\\"table__header-cell\\"><span class=\\"table__header-cell__value\\">Age</span><span class=\\"table__header-cell_sort\\"></span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Bob</span></td>
+        <td class=\\"table__body-cell\\"><span>27</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Tom</span></td>
+        <td class=\\"table__body-cell\\"><span>20</span></td>
+      </tr>
+      <tr class=\\"table__body-row\\">
+        <td class=\\"table__body-cell\\"><span>Alice</span></td>
+        <td class=\\"table__body-cell\\"><span>23</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <!---->
+</div>"
+`;
