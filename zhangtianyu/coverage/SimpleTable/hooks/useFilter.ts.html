@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">95.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/42</span>
+                <span class='fraction'>40/42</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">81.81% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>9/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>5/5</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">95.23% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/42</span>
+                <span class='fraction'>40/42</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -115,35 +115,35 @@
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span></td><td class="text"><pre class="prettyprint lang-js">import { computed, ComputedRef, Ref } from 'vue'
 import { ColumnConfig, BaseConfig } from '../type'
@@ -159,7 +159,7 @@ export default function useFilter(baseConfig: BaseConfig, columns: ComputedRef&l
         let activeColumns = filtersColumns.value.filter(column =&gt; column.filterConfig?.value !== '')
 &nbsp;
         let info = activeColumns.map(column =&gt; {
-<span class="cstat-no" title="statement not covered" >            return { label: column.label, prop: column.prop, filter: column.filterConfig }</span>
+            return { label: column.label, prop: column.prop, filter: column.filterConfig }
         })
         console.log(`筛选项为:${JSON.stringify(info)}`)
 &nbsp;
@@ -167,24 +167,24 @@ export default function useFilter(baseConfig: BaseConfig, columns: ComputedRef&l
     })
 &nbsp;
     //列标题点击筛选时回调
-    let onFilterChange = <span class="fstat-no" title="function not covered" >function (column: Ref&lt;ColumnConfig&gt;, value: any) {</span>
-<span class="cstat-no" title="statement not covered" >        let { prop, filterConfig } = column.value</span>
-<span class="cstat-no" title="statement not covered" >        if (filterConfig) {</span>
-<span class="cstat-no" title="statement not covered" >            filterConfig.value = value</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >            if (!filterColumnMultiple) {</span>
-<span class="cstat-no" title="statement not covered" >                //如果未开启多列筛选，需要把其他列的筛选清空</span>
-<span class="cstat-no" title="statement not covered" >                filtersColumns.value.forEach(column =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >                    if (column.prop !== prop &amp;&amp; column.filterConfig) {</span>
+    let onFilterChange = function (column: Ref&lt;ColumnConfig&gt;, value: any) {
+        let { prop, filterConfig } = column.value
+        if (filterConfig) {
+            filterConfig.value = value
+&nbsp;
+            if (!filterColumnMultiple) {
+                //如果未开启多列筛选，需要把其他列的筛选清空
+                filtersColumns.value.forEach(column =&gt; {
+                    if (column.prop !== <span class="branch-0 cbranch-no" title="branch not covered" >prop &amp;&amp; column.filterConfig) <span class="branch-0 cbranch-no" title="branch not covered" >{</span></span>
 <span class="cstat-no" title="statement not covered" >                        column.filterConfig.value = ''</span>
 <span class="cstat-no" title="statement not covered" >                    }</span>
-<span class="cstat-no" title="statement not covered" >                })</span>
-<span class="cstat-no" title="statement not covered" >            }</span>
-<span class="cstat-no" title="statement not covered" >            //通知外部回调</span>
-<span class="cstat-no" title="statement not covered" >            emit('filterChange', { prop, filter: value })</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+                })
+            }
+            //通知外部回调
+            emit('filterChange', { prop, filter: value })
+        }
+&nbsp;
+    }
     return { activeFilters, onFilterChange }
 }</pre></td></tr></table></pre>
 
@@ -193,7 +193,7 @@ export default function useFilter(baseConfig: BaseConfig, columns: ComputedRef&l
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat May 28 2022 21:45:23 GMT+0800 (中国标准时间)
+                at Sat Jun 04 2022 13:22:34 GMT+0800 (中国标准时间)
             </div>
         <script src="../../prettify.js"></script>
         <script>

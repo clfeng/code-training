@@ -2,9 +2,10 @@ import { mount, DOMWrapper } from "@vue/test-utils";
 import { expect, SpyInstanceFn, test, vi } from "vitest";
 import SimpleTable from "../src/components/SimpleTable";
 import SimpleTableColumn from "../src/components/SimpleTable/SimpleTableColumn.tsx";
-import { PaginationProps } from "../src/components/Pagination/typs";
 import { ref, reactive, toRefs } from 'vue'
 import { TableColumnSortOrderString } from '../src/components/SimpleTable/type'
+import { PaginationProps } from "./components/Pagination/typs";
+
 let list = [
   {
     "id": "360000201606043789",
@@ -77,7 +78,8 @@ function validaSortOrder(th: DOMWrapper<Element>, order: TableColumnSortOrderStr
     expect(th.find('.sort--asc').classes()).not.toContain('sort__icon--active')
   } else if (order === 'normal') {
     //升序、降序按钮都没激活
-    expect(th.findAll('.sort__icon')).not.toContain('sort__icon--active')
+    expect(th.find('.sort--desc').classes()).not.toContain('sort__icon--active')
+    expect(th.find('.sort--asc').classes()).not.toContain('sort__icon--active')
   }
 }
 
@@ -108,6 +110,11 @@ async function validaTrigger(th: DOMWrapper<Element>, prop: string, order: Table
   await th.find(btnClass).trigger('click')
   expect(onSortChange).toBeCalledWith({ prop, order: 'normal' })
   validaSortOrder(th, 'normal')
+}
+
+//验证过滤
+async function validaFilter(th: DOMWrapper<Element>) {
+
 }
 
 //普通表格
@@ -232,7 +239,7 @@ test('mount tableSortDefaultSort', () => {
 
   let roleTH = wrapper.findAll('.simple-table__header-warp .table__cell')[1]
 
-  let sexTH = wrapper.findAll('.simple-table__header-warp .table__cell')[1]
+  let sexTH = wrapper.findAll('.simple-table__header-warp .table__cell')[2]
 
   validaSortOrder(roleTH, 'asc')
   validaSortOrder(sexTH, 'normal')
@@ -281,14 +288,13 @@ test('mount tableSortSortOrders', async () => {
 })
 
 //多列排序表格
-test('mount tableSortMultiple', () => {
+test('mount tableSortMultiple', async () => {
   const wrapper = mount({
     template: `<simple-table  :data="data"
-                              :default-sort = "[{prop: 'role', order: 'desc'}]"
+                              :default-sort = "[{prop: 'role', order: 'asc'}]"
                               row-key="id"
                               style="width: 980px"
-                              order-column-multiple
-                              @sort-change="sortChange" \>
+                              order-column-multiple \>
 
                   <simple-table-column label="ID" prop="id" width="150">
                     <template v-slot:header="{ column }">
@@ -311,14 +317,21 @@ test('mount tableSortMultiple', () => {
     setup() {
       let data = ref<unknown[]>(list);
 
-      function sortChange(sort) {
-        console.log(sort, "sort");
-      }
-
-      return { data, sortChange }
+      return { data }
     },
   });
   expect(wrapper.html()).toMatchSnapshot();
+  let roleTH = wrapper.findAll('.simple-table__header-warp .table__cell')[1]
+
+  let sexTH = wrapper.findAll('.simple-table__header-warp .table__cell')[2]
+
+  validaSortOrder(roleTH, 'asc')
+  validaSortOrder(sexTH, 'normal')
+
+  await roleTH.trigger('click')
+  await sexTH.trigger('click')
+  expect(roleTH.find('.sort--desc').classes()).toContain('sort__icon--active')
+  expect(sexTH.find('.sort--asc').classes()).toContain('sort__icon--active')
 })
 
 //多列排序自定义优先级表格
@@ -329,8 +342,7 @@ test('mount tableSortMultipleOrderType', () => {
                               :default-sort = "[{prop: 'role', order: 'desc'}]"
                               row-key="id"
                               style="width: 980px"
-                              order-column-multiple
-                              @sort-change="sortChange" \>
+                              order-column-multiple \>
 
                   <simple-table-column label="ID" prop="id" width="150">
                     <template v-slot:header="{ column }">
@@ -353,23 +365,20 @@ test('mount tableSortMultipleOrderType', () => {
     setup() {
       let data = ref<unknown[]>(list);
 
-      function sortChange(sort) {
-        console.log(sort, "sort");
-      }
-
-      return { data, sortChange }
+      return { data }
     },
   });
   expect(wrapper.html()).toMatchSnapshot();
 })
 
 //筛选表格
-test("mount tableFilter", () => {
+test("mount tableFilter", async () => {
+  const onFilterChange = vi.fn()
   const wrapper = mount({
     template: `<simple-table  :data="data"
                               row-key="id"
                               style="width: 980px"
-                              @filter-change="filterChange" \>
+                              @filter-change="onFilterChange" \>
 
                   <simple-table-column label="ID" prop="id" width="150">
                     <template v-slot:header="{ column }">
@@ -394,66 +403,32 @@ test("mount tableFilter", () => {
 
       let data = ref<unknown[]>(list);
 
-      function filterChange(filter) {
-        console.log(filter, "filter");
-      }
-
-      return { data, filterChange }
+      return { data, onFilterChange }
     },
   });
   expect(wrapper.html()).toMatchSnapshot();
-});
-
-//远程筛选表格
-test("mount tableFilterCustom", () => {
-  const wrapper = mount({
-    template: `<simple-table  :data="data"
-                              filter-type="custom"
-                              row-key="id"
-                              style="width: 980px"
-                              @filter-change="filterChange" \>
-
-                  <simple-table-column label="ID" prop="id" width="150">
-                    <template v-slot:header="{ column }">
-                      <div>{{ column.label }}</div>
-                    </template>
-                  </simple-table-column>
-
-                  <simple-table-column  label="role"
-                                        prop="role"
-                                        :filters="[
-                                          { text: 'a', value: 1 },
-                                          { text: 'b', value: 2 },
-                                        ]"/>
-
-                  <simple-table-column label="地址" prop="addr" width="300" />
-              </simple-table>`,
-    components: {
-      "simple-table-column": SimpleTableColumn,
-      "simple-table": SimpleTable
-    },
-    setup() {
-
-      let data = ref<unknown[]>(list);
-
-      function filterChange(filter) {
-        console.log(filter, "filter");
-      }
-
-      return { data, filterChange }
-    },
-  });
-  expect(wrapper.html()).toMatchSnapshot();
+  let roleTH = wrapper.findAll('.simple-table__header-warp .table__cell')[1]
+  //验证是否存在过滤类名
+  expect(roleTH.classes()).toContain('table_cell--filter')
+  //第一个过滤项
+  let filterBtn = roleTH.findAll('.dropdown__item')[0]
+  //点击过滤
+  await filterBtn.trigger('click')
+  expect(filterBtn.classes()).toContain('dropdown__item--active')
+  expect(onFilterChange).toBeCalledWith({ prop: 'role', filter: 1 })
+  //再次点击 取消过滤
+  await filterBtn.trigger('click')
+  expect(filterBtn.classes()).not.toContain('dropdown__item--active')
+  expect(onFilterChange).toBeCalledWith({ prop: 'role', filter: '' })
 });
 
 //多列筛选表格
-test("mount tableFilterMultiple", () => {
+test("mount tableFilterMultiple", async () => {
   const wrapper = mount({
     template: `<simple-table  :data="data"
                               row-key="id"
                               style="width: 980px"
-                              filter-column-multiple
-                              @filter-change="filterChange" \>
+                              filter-column-multiple \>
 
                   <simple-table-column label="ID" prop="id" width="150">
                     <template v-slot:header="{ column }">
@@ -490,12 +465,114 @@ test("mount tableFilterMultiple", () => {
 
       let data = ref<unknown[]>(list);
 
-      function filterChange(filter) {
-        console.log(filter, "filter");
-      }
-
-      return { data, filterChange }
+      return { data }
     },
   });
   expect(wrapper.html()).toMatchSnapshot();
+  let nameTH = wrapper.findAll('.simple-table__header-warp .table__cell')[1]
+  let roleTH = wrapper.findAll('.simple-table__header-warp .table__cell')[2]
+
+  //验证是否存在过滤类名
+  expect(roleTH.classes()).toContain('table_cell--filter')
+  expect(nameTH.classes()).toContain('table_cell--filter')
+  //第一个过滤项
+  let nameFilterBtn = nameTH.findAll('.dropdown__item')[0]
+  let roleFilterBtn = roleTH.findAll('.dropdown__item')[0]
+
+  //点击过滤
+  await nameFilterBtn.trigger('click')
+  await roleFilterBtn.trigger('click')
+  expect(nameFilterBtn.classes()).toContain('dropdown__item--active')
+  expect(roleFilterBtn.classes()).toContain('dropdown__item--active')
 });
+
+//分页
+test('mount pagination', async () => {
+  const onCurrentChange = vi.fn()
+
+  const wrapper = mount({
+    template: `<simple-table  :data="data"
+                              :current-page="currentPage"
+                              :pager-count="pagerCount"
+                              :total="total"
+                              :page-size="pageSize"
+                              @current-change="onCurrentChange"
+                              row-key="id"
+                              style="width: 980px" \>
+                  <simple-table-column label="ID" prop="id" width="150">
+                    <template v-slot:header="{ column }">
+                      <div>{{ column.label }}</div>
+                    </template>
+                  </simple-table-column>
+
+                  <simple-table-column  label="名称"
+                                        prop="username"
+                                        width="60">
+                    <template v-slot="{ row }">
+                      <div>{{ row.username }}</div>
+                    </template>
+                  </simple-table-column>
+
+                  <simple-table-column label="ID" prop="id" width="150" />
+                  
+              </simple-table>`,
+    components: {
+      "simple-table-column": SimpleTableColumn,
+      "simple-table": SimpleTable
+    },
+    setup() {
+      let data = ref<unknown[]>(list);
+
+      let pageInfo = reactive<PaginationProps>({
+        currentPage: 1,
+        total: 100,
+        pageSize: 10,
+        pagerCount: 5,
+      });
+
+      return { data, onCurrentChange, ...toRefs(pageInfo) }
+    },
+  });
+  expect(wrapper.html()).toMatchSnapshot();
+
+  let page = wrapper.find('.simple-table__pagination')
+  //只显示5个分页按钮
+  let pager = page.findAll('.pagination__page')
+  expect(pager.length).toBe(5)
+
+  //点击下一页
+  await page.find('.pagination__next').trigger('click')
+  expect(onCurrentChange).toBeCalledWith(2)
+  //手动修改当前页数
+  await wrapper.setProps({
+    currentPage: 2
+  })
+  //第二页是否激活
+  expect(pager[1].classes()).toContain('pagination__page--active')
+
+  //点击上一页
+  await page.find('.pagination__pre').trigger('click')
+  expect(onCurrentChange).toBeCalledWith(1)
+  //手动修改当前页数
+  await wrapper.setProps({
+    currentPage: 1
+  })
+  //第一页是否激活
+  expect(pager[0].classes()).toContain('pagination__page--active')
+
+  //点击第五页
+  await pager[4].trigger('click')
+  expect(onCurrentChange).toBeCalledWith(5)
+  //手动修改当前页数
+  await wrapper.setProps({
+    currentPage: 5
+  })
+  //第五页是否激活
+  expect(pager[4].classes()).toContain('pagination__page--active')
+
+  // 跳转至第10页
+  page.find('.pagination__goto input').setValue(10)
+  await page.find('.pagination__goto input').trigger("blur")
+  expect(onCurrentChange).toBeCalledWith(10)
+
+})

@@ -1,5 +1,129 @@
 // Vitest Snapshot v1
 
+exports[`mount pagination 1`] = `
+"<section class=\\"simple-table\\" style=\\"width: 980px;\\">
+  <div class=\\"simple-table__header-warp\\">
+    <table>
+      <colgroup>
+        <col width=\\"150\\">
+        <col width=\\"60\\">
+        <col width=\\"150\\">
+      </colgroup>
+      <thead>
+        <tr>
+          <th>
+            <div class=\\"table__cell\\">
+              <div>ID</div>
+              <!---->
+              <!---->
+            </div>
+          </th>
+          <th>
+            <div class=\\"table__cell\\">名称
+              <!---->
+              <!---->
+            </div>
+          </th>
+          <th>
+            <div class=\\"table__cell\\">ID
+              <!---->
+              <!---->
+            </div>
+          </th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class=\\"simple-table__body-warp\\">
+    <table>
+      <colgroup>
+        <col width=\\"150\\">
+        <col width=\\"60\\">
+        <col width=\\"150\\">
+      </colgroup>
+      <tbody>
+        <tr>
+          <td>
+            <div class=\\"table__cell\\">360000201606043789</div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">
+              <div>姚敏</div>
+            </div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">360000201606043789</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class=\\"table__cell\\">540000197708078311</div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">
+              <div>韩平</div>
+            </div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">540000197708078311</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class=\\"table__cell\\">330000201012248052</div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">
+              <div>潘杰</div>
+            </div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">330000201012248052</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class=\\"table__cell\\">540000201403163506</div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">
+              <div>顾芳</div>
+            </div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">540000201403163506</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class=\\"table__cell\\">360000198811223370</div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">
+              <div>蒋磊</div>
+            </div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">360000198811223370</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class=\\"simple-table__pagination\\">
+    <section class=\\"pagination__warp\\" data-v-72233bcd=\\"\\"><button class=\\"pagination__pre\\" data-v-72233bcd=\\"\\">上一页</button>
+      <ul class=\\"pagination__pager\\" data-v-72233bcd=\\"\\">
+        <li class=\\"pagination__page pagination__page--active\\" data-v-72233bcd=\\"\\">1</li>
+        <li class=\\"pagination__page\\" data-v-72233bcd=\\"\\">2</li>
+        <li class=\\"pagination__page\\" data-v-72233bcd=\\"\\">3</li>
+        <li class=\\"pagination__page\\" data-v-72233bcd=\\"\\">4</li>
+        <li class=\\"pagination__page\\" data-v-72233bcd=\\"\\">5</li>
+      </ul><button class=\\"pagination__next\\" data-v-72233bcd=\\"\\">下一页</button><label class=\\"pagination__goto\\" data-v-72233bcd=\\"\\"><span data-v-72233bcd=\\"\\">跳转</span><input type=\\"text\\" data-v-72233bcd=\\"\\"></label>
+    </section>
+  </div>
+</section>"
+`;
+
 exports[`mount table 1`] = `
 "<section class=\\"simple-table\\" style=\\"width: 980px;\\">
   <div class=\\"simple-table__header-warp\\">
@@ -121,121 +245,6 @@ exports[`mount table 1`] = `
 `;
 
 exports[`mount tableFilter 1`] = `
-"<section class=\\"simple-table\\" style=\\"width: 980px;\\">
-  <div class=\\"simple-table__header-warp\\">
-    <table>
-      <colgroup>
-        <col width=\\"150\\">
-        <col width=\\"\\">
-        <col width=\\"300\\">
-      </colgroup>
-      <thead>
-        <tr>
-          <th>
-            <div class=\\"table__cell\\">
-              <div>ID</div>
-              <!---->
-              <!---->
-            </div>
-          </th>
-          <th>
-            <div class=\\"table__cell table_cell--filter\\">role
-              <!---->
-              <section class=\\"dropdown\\" tabindex=\\"-1\\"><span class=\\"dropdown__btn iconfont icon-xiangxiajiantou\\"></span>
-                <ul class=\\"dropdown__list\\">
-                  <li class=\\"dropdown__item\\">1</li>
-                  <li class=\\"dropdown__item\\">2</li>
-                </ul>
-              </section>
-            </div>
-          </th>
-          <th>
-            <div class=\\"table__cell\\">地址
-              <!---->
-              <!---->
-            </div>
-          </th>
-        </tr>
-      </thead>
-    </table>
-  </div>
-  <div class=\\"simple-table__body-warp\\">
-    <table>
-      <colgroup>
-        <col width=\\"150\\">
-        <col width=\\"\\">
-        <col width=\\"300\\">
-      </colgroup>
-      <tbody>
-        <tr>
-          <td>
-            <div class=\\"table__cell\\">360000201606043789</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">0</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">除土立领本开理直置去界容京议圆路步。济这切质格金以行界给准群被红花市都程。红矿社西群位合应七了委管并近治当。革管名议给段提越数斯认期调再步适半实。</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class=\\"table__cell\\">540000197708078311</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">2</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">者量入院花新区设值影何以观。就问争我平管团打学进交还标见入类。精为力每一便能带酸什利报得压把。回山片反局个已状空月调中把导其美拉。低复严点备则标将信生般何育大一给。称着入位同矿社非好安事打。</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class=\\"table__cell\\">330000201012248052</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">1</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">最要证积六了名大布先知提划空。文养年标事何新已又完会才国被。术那省并任常工条月议军所复红七并。见包究建原约公从状统达很律。中题大因利率维花前越走提一住。</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class=\\"table__cell\\">540000201403163506</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">1</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">使习区自大构始万农史九验七。快维始压山不表日调将等论很车。学受织区观问准斗家员同住老。规军重统义个技部持拉积问连马率级。是机却题还几给办近种年强知派。何到革持接己指路者于标个备率。加按果什商无育证五部动资整。</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class=\\"table__cell\\">360000198811223370</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">2</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">较些团群她难清地习自际已反。或他全装很计日性在可下些京们来离。相装于进确果场叫采各料片统基说并。何更或第候非系它过回文七。利成者标办候确业点认文自无力两。书由教作心总九共品便界领车劳作。</div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class=\\"simple-table__pagination\\">
-    <section class=\\"pagination__warp\\" data-v-72233bcd=\\"\\"><button class=\\"pagination__pre\\" data-v-72233bcd=\\"\\">上一页</button>
-      <ul class=\\"pagination__pager\\" data-v-72233bcd=\\"\\">
-        <li class=\\"pagination__page pagination__page--active\\" data-v-72233bcd=\\"\\">1</li>
-      </ul><button class=\\"pagination__next\\" data-v-72233bcd=\\"\\">下一页</button><label class=\\"pagination__goto\\" data-v-72233bcd=\\"\\"><span data-v-72233bcd=\\"\\">跳转</span><input type=\\"text\\" data-v-72233bcd=\\"\\"></label>
-    </section>
-  </div>
-</section>"
-`;
-
-exports[`mount tableFilterCustom 1`] = `
 "<section class=\\"simple-table\\" style=\\"width: 980px;\\">
   <div class=\\"simple-table__header-warp\\">
     <table>
@@ -630,7 +639,7 @@ exports[`mount tableSortMultiple 1`] = `
             </div>
           </th>
           <th>
-            <div class=\\"table__cell table__cell--sort\\">role<div class=\\"table__sort\\"><span class=\\"sort__icon iconfont icon-paixu-shang sort--asc\\"></span><span class=\\"sort__icon iconfont icon-paixu-xia sort--desc sort__icon--active\\"></span></div>
+            <div class=\\"table__cell table__cell--sort\\">role<div class=\\"table__sort\\"><span class=\\"sort__icon iconfont icon-paixu-shang sort--asc sort__icon--active\\"></span><span class=\\"sort__icon iconfont icon-paixu-xia sort--desc\\"></span></div>
               <!---->
             </div>
           </th>
@@ -653,24 +662,13 @@ exports[`mount tableSortMultiple 1`] = `
       <tbody>
         <tr>
           <td>
-            <div class=\\"table__cell\\">540000197708078311</div>
+            <div class=\\"table__cell\\">360000201606043789</div>
           </td>
           <td>
-            <div class=\\"table__cell\\">2</div>
+            <div class=\\"table__cell\\">0</div>
           </td>
           <td>
             <div class=\\"table__cell\\">1</div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div class=\\"table__cell\\">360000198811223370</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">2</div>
-          </td>
-          <td>
-            <div class=\\"table__cell\\">2</div>
           </td>
         </tr>
         <tr>
@@ -697,13 +695,24 @@ exports[`mount tableSortMultiple 1`] = `
         </tr>
         <tr>
           <td>
-            <div class=\\"table__cell\\">360000201606043789</div>
+            <div class=\\"table__cell\\">540000197708078311</div>
           </td>
           <td>
-            <div class=\\"table__cell\\">0</div>
+            <div class=\\"table__cell\\">2</div>
           </td>
           <td>
             <div class=\\"table__cell\\">1</div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class=\\"table__cell\\">360000198811223370</div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">2</div>
+          </td>
+          <td>
+            <div class=\\"table__cell\\">2</div>
           </td>
         </tr>
       </tbody>
