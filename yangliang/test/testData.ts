@@ -20,7 +20,7 @@ export const columns = [
 ]
 
 export const mock = Mock.mock({
-    'dataSource|10':[
+    'dataSource|60':[
         {
             key: '@id',
             name: '@cname',
