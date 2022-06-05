@@ -43,7 +43,7 @@ function convertSortable(columnProps: ColumnProps, baseConfig: BaseConfig) {
         if (defaultSort.prop === prop) {
             sort = defaultSort
         }
-    } else {
+    } else if(defaultSort) {
         console.warn(`${orderColumnMultiple ? '开启' : '关闭'}属性orderColumnMultiple时，defaultSort需要传递${orderColumnMultiple ? '数组' : '对象'}`)
     }
     let order = TableColumnSortOrder.normal

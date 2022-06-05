@@ -138,7 +138,7 @@ export interface FilterConfig { //筛选配信息
 
 export interface BaseConfig {  //列的基本信息
     rowKey: string
-    defaultSort: DefaultSort | DefaultSort[] | undefined
+    defaultSort?: DefaultSort | DefaultSort[]
     orderType: OrderType
     orderColumnMultiple: boolean,
     orderBy: string[]

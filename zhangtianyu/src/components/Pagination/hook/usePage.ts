@@ -19,7 +19,8 @@ export default function usePage(props: PaginationProps) {
         if (pageCount.value <= pagerCount.value) {
             end = pageCount.value
         } else {
-            //否则计算分页开始的位置 ，最小从1开始
+            //否则计算分页按钮开始与结束的位置，按钮展示规则为 当前分页为中心，前后各展示 pagerCount 的一半数量按钮
+            //按钮最小从1开始
             start = Math.max(currentPage.value - Math.floor(pagerCount.value / 2), 1)
             //防止分页按钮超出最大值
             start = Math.min(start, pageCount.value - pagerCount.value + 1)

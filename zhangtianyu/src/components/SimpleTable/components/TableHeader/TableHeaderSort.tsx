@@ -17,12 +17,14 @@ export default defineComponent({
                 "sort__icon": true,
                 "iconfont": true,
                 "icon-paixu-shang": true,
+                "sort--asc": true,
                 "sort__icon--active": column.value.sortableConfig?.order === TableColumnSortOrder.asc
             }
             let descClass = {
                 "sort__icon": true,
                 "iconfont": true,
                 "icon-paixu-xia": true,
+                "sort--desc": true,
                 "sort__icon--active": column.value.sortableConfig?.order === TableColumnSortOrder.desc
             }
             return (
