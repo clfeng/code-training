@@ -1,4 +1,4 @@
-import { computed, defineComponent, PropType, ref, toRefs } from 'vue'
+import { computed, defineComponent, ref, toRefs } from 'vue'
 import './index.less'
 
 export default defineComponent({
@@ -20,14 +20,15 @@ export default defineComponent({
     },
   },
   setup(props, { emit }) {
+    // props需要传入总条数、每页的条数、当前页
     const { current, pageSize, total } = toRefs(props)
-    const value = ref<number>()
+    const jumperPagerNum = ref<number>()
     const range = computed(() => {
       return Math.max(Math.floor(total.value / pageSize.value), 1)
     })
 
     function handleInputChange() {
-      const num = Number(value.value)
+      const num = Number(jumperPagerNum.value)
       let next = isNaN(num) ? current.value : num
 
       next = Math.max(Math.min(range.value, next), 1)
@@ -50,11 +51,9 @@ export default defineComponent({
       return (
         <ul class="si-pagination">
           <li class="si-pagination__item" onClick={() => { handlePrevClick() }}>{'<'}</li>
-          <li class="si-pagination__item" onClick={() => { handleClickChange(1) }}>1</li>
-          <li class="si-pagination__item" onClick={() => { handleClickChange(2) }}>2</li>
-          <li class="si-pagination__item" onClick={() => { handleClickChange(3) }}>3</li>
-          <li class="si-pagination__item" onClick={() => { handleClickChange(4) }}>4</li>
-          <li class="si-pagination__item" onClick={() => { handleClickChange(5) }}>5</li>
+          {Array.from({ length: range.value }, (_, i) => {
+            return <li class="si-pagination__item" onClick={() => { handleClickChange(i + 1) }}>{i + 1}</li>
+          })}
           <li class="si-pagination__item" onClick={() => { handleNextClick() }}>
             {'>'}
           </li>
@@ -62,7 +61,7 @@ export default defineComponent({
             <span>跳至</span>
             <input
               class="si-pagination__input"
-              v-model={value.value}
+              v-model={jumperPagerNum.value}
               onChange={() => { handleInputChange() }}
             />
             <span>页</span>
