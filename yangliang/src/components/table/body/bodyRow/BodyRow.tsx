@@ -1,14 +1,14 @@
 import { defineComponent, onMounted } from "vue";
 import './bodyRow.css';
-import { Column } from "../../types";
-import Cell from '../cell/Cell';
-import { addLog } from "../../../log/log";
+import { Column } from "../../../types";
+import Cell from '../../cell/Cell';
+import { addLog } from "../../../../log/log";
 
 
 export interface BodyRowProps {
-    columns: Column[];
-    record: any;
-  }
+  columns: Column[];
+  record: any;
+}
 
 
 export default defineComponent({
