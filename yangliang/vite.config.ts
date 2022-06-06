@@ -12,4 +12,7 @@ export default defineConfig({
       web: [/.[tj]sx$/],
     },
   },
+  server: {
+    port: 3001,
+  }
 });

@@ -33,7 +33,7 @@
 
     const tableOptions = {
         columns: [
-            {header: 'Name', dataIndex: 'name'},
+            {header: 'Name', dataIndex: 'name', width: 200},
             {header: 'Age', dataIndex: 'age', sortable: true}
         ],
         data: [
@@ -46,9 +46,8 @@
             sortOrder: SORT_ORDER.NONE
         },
         paginationOptions: {
-            enable: true,
-            limit: 2,
-            page: 1
+            pageSize: 2,
+            current: 1
         },
     }
 
@@ -95,13 +94,14 @@
 
 ##### ColumnOptions配置
 
-| 名称 | 描述 |类型|默认值|可选值|
-|----- | ------|------|------|------|
-|header | 表头显示的文案 | string |||
-|dataIndex | 表头取值的key | string |||
-|sortable | 是否支持排序 | boolean |false|false/true|
-|sortFn | 自定义排序函数 | (a: TableData, b: TableData) => number |||
-|slot | 表头插槽/列插槽 | TableHeaderSlot & TableBodySlot |||
+| 名称        | 描述       | 类型                                     |默认值|可选值|
+|-----------|----------|----------------------------------------|------|------|
+| header    | 表头显示的文案  | string                                 |||
+| dataIndex | 表头取值的key | string                                 |||
+| width     | 列宽     | number                                 |||
+| sortable  | 是否支持排序   | boolean                                |false|false/true|
+| sortFn    | 自定义排序函数  | (a: TableData, b: TableData) => number |||
+| slot      | 表头插槽/列插槽 | TableHeaderSlot & TableBodySlot        |||
 
 ##### sortOptions配置
 
@@ -113,13 +113,12 @@
 
 ##### paginationOptions配置
 
-| 名称 | 描述 |类型|默认值|可选值|
-|----- | ------|------|------|------|
-|enable | 是否支持分页 | boolean |false|false/true|
-|limit | 每页显示条目个数 | number |10||
-|page | 当前页 | number |1||
-|total | 总条目数 | number |0||
-|remote | 是否支持远端分页 | boolean |false|false/true|
+| 名称       | 描述 |类型|默认值|可选值|
+|----------| ------|------|------|------|
+| pageSize | 每页显示条目个数 | number |10||
+| current  | 当前页 | number |1||
+| total    | 总条目数 | number |0||
+| remote   | 是否支持远端分页 | boolean |false|false/true|
 
 ### Events
 

@@ -6,7 +6,7 @@
 
     const tableOptions = {
         columns: [
-            {header: 'Name', dataIndex: 'name'},
+            {header: 'Name', dataIndex: 'name', width: 200},
             {header: 'Age', dataIndex: 'age', sortable: true}
         ],
         data: [
@@ -16,12 +16,11 @@
         ],
         sortOptions: {
             sortBy: '',
-            sortOrder: SORT_ORDER.NONE
+            sortOrder: SORT_ORDER.NONE,
         },
         paginationOptions: {
-            enable: true,
-            limit: 2,
-            page: 1
+            pageSize: 2,
+            current: 1,
         },
     }
 

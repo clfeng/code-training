@@ -6,42 +6,31 @@ import TableHeadCell from "./TableHeadCell";
 export default defineComponent({
     name: "TableHead",
     props: tableHeadProps,
-    emits: ["sort"],
+    emits: ["updateSortItem"],
     setup(props: TableHeadProps,{emit}) {
-        //排序需要重新在hook引入
-        let sort = (item: ColumnType)=>{
-            INFO({msg:'点击触发'});
-            item.sort = item.sort === 'reversal' ? 'ordinal': 'reversal';
-            emit('sort',item);
-        }
-        //清除排序
-        let clearSort = () =>{
-            props.columns.map(item=>{
-                item.sort = 'disorder'
-            })
-            let item = {
-                key:'',
-                title:'',
-                sort:'disorder'
+        let updateSortItem = (item: ColumnType)=>{
+            let sort = item.sort === 'reversal' ? 'ordinal': 'reversal';
+            item.sort = sort;
+            let sortItem = {
+                key: item.key,
+                sort
             }
-            sort(item);
+            INFO({msg:`排序点击触发--${sortItem.sort}`});
+            emit('updateSortItem',sortItem);
         }
-
         return () => {
             return (
-                <>
-                    <thead>
-                        <tr>
-                            {props.columns.map((item) => {
-                                return (
-                                    <TableHeadCell 
-                                    column={item}
-                                    onSortChange={(val)=>sort(val)}/>
-                                );
-                            })}
-                        </tr>
-                    </thead>
-                </>
+                <thead>
+                    <tr>
+                        {props.columns.map((item) => {
+                            return (
+                                <TableHeadCell 
+                                column={item}
+                                onUpdateSortItem={(val)=>updateSortItem(val)}/>
+                            );
+                        })}
+                    </tr>
+                </thead>
             );
         }
     },

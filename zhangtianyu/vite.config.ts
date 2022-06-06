@@ -8,6 +8,12 @@ export default defineConfig({
   plugins: [vue(), vueJsx(), viteMockServe({
     mockPath: "./mock",
   }),],
+  resolve: {
+    alias: {
+      'src': './src',
+      'components': './src/components'
+    }
+  },
   test: {
     globals: true,
     environment: "jsdom",

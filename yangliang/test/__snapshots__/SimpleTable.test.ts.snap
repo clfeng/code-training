@@ -1,16 +1,125 @@
 // Vitest Snapshot v1
 
+exports[`!columns & !dataSource 1`] = `
+"<div>
+  <table>
+    <table-header-stub columns=\\"\\" sorter=\\"(key, asc) => {
+      currentSorter.key = key;
+      currentSorter.asc = asc;
+    }\\"></table-header-stub>
+    <table-body-stub columns=\\"\\" datasource=\\"\\"></table-body-stub>
+  </table>
+  <pagination-stub></pagination-stub>
+</div>"
+`;
+
+exports[`!columns & dataSource 1`] = `
+"<div>
+  <table>
+    <table-header-stub columns=\\"\\" sorter=\\"(key, asc) => {
+      currentSorter.key = key;
+      currentSorter.asc = asc;
+    }\\"></table-header-stub>
+    <table-body-stub columns=\\"\\" datasource=\\"[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]\\"></table-body-stub>
+  </table>
+  <pagination-stub></pagination-stub>
+</div>"
+`;
+
+exports[`basic work 1`] = `
+"<div>
+  <table>
+    <table-header-stub columns=\\"[object Object],[object Object],[object Object]\\" sorter=\\"(key, asc) => {
+      currentSorter.key = key;
+      currentSorter.asc = asc;
+    }\\"></table-header-stub>
+    <table-body-stub columns=\\"[object Object],[object Object],[object Object]\\" datasource=\\"[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]\\"></table-body-stub>
+  </table>
+  <pagination-stub></pagination-stub>
+</div>"
+`;
+
+exports[`columns & !dataSource 1`] = `
+"<div>
+  <table>
+    <table-header-stub columns=\\"[object Object],[object Object],[object Object]\\" sorter=\\"(key, asc) => {
+      currentSorter.key = key;
+      currentSorter.asc = asc;
+    }\\"></table-header-stub>
+    <table-body-stub columns=\\"[object Object],[object Object],[object Object]\\" datasource=\\"\\"></table-body-stub>
+  </table>
+  <pagination-stub></pagination-stub>
+</div>"
+`;
+
+exports[`columns & dataSource 1`] = `
+"<div>
+  <table>
+    <table-header-stub columns=\\"[object Object],[object Object],[object Object]\\" sorter=\\"(key, asc) => {
+      currentSorter.key = key;
+      currentSorter.asc = asc;
+    }\\"></table-header-stub>
+    <table-body-stub columns=\\"[object Object],[object Object],[object Object]\\" datasource=\\"[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]\\"></table-body-stub>
+  </table>
+  <pagination-stub></pagination-stub>
+</div>"
+`;
+
 exports[`mount component 1`] = `
-"<table>
-  <thead>
-    <th>
-    <td></td>
-    </th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>hello table</td>
-    </tr>
-  </tbody>
-</table>"
+"<div>
+      <table>
+        <thead>
+         <header-row-stub columns=\\"[object Object],[object Object],[object Object]\\" sorter=\\"(key, asc) => {
+         currentSorter.key = key;
+         currentSorter.asc = asc;
+       }\\"></header-row-stub>
+       </thead>
+       <tbody>
+         <body-row-stub columns=\\"[object Object],[object Object],[object Object]\\" record=\\"[object Object]\\"></body-row-stub>
+         <body-row-stub columns=\\"[object Object],[object Object],[object Object]\\" record=\\"[object Object]\\"></body-row-stub>
+        </tbody>
+      </table>
+      <pagination-stub current=\\"1\\" disabled=\\"false\\" hideonsinglepage=\\"false\\" pagesize=\\"10\\" showtotal=\\"false\\" total=\\"…
+          currentPage.value = page;
+        }\\" showpre=\\"false\\" shownext=\\"false\\"></pagination-stub>
+    </div>"
+`;
+
+exports[`order work 1`] = `
+"<div>
+  <table>
+    <table-header-stub columns=\\"[object Object],[object Object],[object Object]\\" sorter=\\"(key, asc) => {
+      currentSorter.key = key;
+      currentSorter.asc = asc;
+    }\\"></table-header-stub>
+    <table-body-stub columns=\\"[object Object],[object Object],[object Object]\\" datasource=\\"[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]\\"></table-body-stub>
+  </table>
+  <pagination-stub></pagination-stub>
+</div>"
+`;
+
+exports[`pagination work 1`] = `
+"<div>
+  <table>
+    <table-header-stub columns=\\"[object Object],[object Object],[object Object]\\" sorter=\\"(key, asc) => {
+      currentSorter.key = key;
+      currentSorter.asc = asc;
+    }\\"></table-header-stub>
+    <table-body-stub columns=\\"[object Object],[object Object],[object Object]\\" datasource=\\"[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]\\"></table-body-stub>
+  </table>
+  <pagination-stub></pagination-stub>
+</div>"
+`;
+
+exports[`quick-jumper work 1`] = `
+"<div>
+  <table>
+    <table-header-stub columns=\\"[object Object],[object Object],[object Object]\\" sorter=\\"(key, asc) => {
+      currentSorter.key = key;
+      currentSorter.asc = asc;
+    }\\"></table-header-stub>
+    <table-body-stub columns=\\"[object Object],[object Object],[object Object]\\" datasource=\\"[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]\\"></table-body-stub>
+  </table>
+  <pagination-stub></pagination-stub>
+</div>"
 `;

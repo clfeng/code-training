@@ -1,16 +1,14 @@
 <template>
-  <Table :dataSource="dataSource" 
+  <fy-table :data="data" 
          :columns="columns"
          @sortChange="sortChange">
-      <template slot="achievement">
-        及格
-      </template>
-  </Table>
+  </fy-table>
 </template>
 
 <script lang="ts">
 import { ref, Ref } from "vue";
-import Table from "./components/table/index";
+import { INFO } from "./util/logger.js";
+import FyTable from "./components/table/index";
 interface TableSource {
   key: number;
   mark: number;
@@ -18,23 +16,21 @@ interface TableSource {
   age: number;
   major: string;
   sex: string;
-  tags: string[];
 }
 export default {
   components: {
-    Table,
+    FyTable,
   },
   setup() {
-    let dataSource: Ref<TableSource[]> = ref([]);
-    for (let index = 0; index < 150; index++) {
-      dataSource.value.push({
+    let data: Ref<TableSource[]> = ref([]);
+    for (let index = 0; index < 100; index++) {
+      data.value.push({
         key: index,
-        name: `Edrward ${index}`,
+        name: `panqinghua ${index}`,
         age: Math.round(Math.random()*60+10),
         mark: Math.round(Math.random()*100+50),
         major: Math.round(Math.random()) ? '计算机':'体育',
-        sex: Math.round(Math.random()) ? '男':'女',
-        tags: ["nice", "developer"],
+        sex: Math.round(Math.random()) ? '男':'女'
       });
     }
 
@@ -66,10 +62,11 @@ export default {
       },
     ]);
     function sortChange (){
-        info("触发排序事件");
+      // 远程排序可在此触发
+        INFO({msg:`触发远程排序事件`});
     }
     return {
-      dataSource,
+      data,
       columns,
       sortChange,
     };

@@ -1,8 +1,7 @@
 import { PaginationProps } from '../typs'
-import { toRefs, computed } from 'vue'
+import { toRefs, ComputedRef, Ref } from 'vue'
 
-export default function usePageListener(props: PaginationProps, emit: Function) {
-    let { currentPage, pageCount } = toRefs(props)
+export default function usePageListener(currentPage: Ref<number>, pageCount: ComputedRef<number>, emit: Function) {
     //跳转分页具体位置
     function changeCurrentPage(num: number) {
         if (num <= 0 || num > pageCount.value || num === currentPage.value) {

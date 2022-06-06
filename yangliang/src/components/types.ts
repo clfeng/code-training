@@ -1,37 +1,23 @@
-import { ExtractPropTypes } from "vue";
-
-//  定义 Props
-export const tableProps = {
-  dataSource: {
-    type: Array,
-  },
-  columns: {
-    type: Array,
-  }
-} as const;
-
-export type TableProps = ExtractPropTypes<typeof tableProps>;
-
-
-export type TableProp = {
-  dataSource: DataSource[];   //数据源
-  columns: Columns[];         //列
-}
-
-
-export type DataSource = {
-  key: string,
-  name: string,
-  age: number,
-  address: string,
-}
-
-export type Columns = {
-  key: string,
+export type Column = {
+  dataKey: string | number,
+  ellipsis: boolean,
+  align: 'left' | 'right' | 'center',
+  fixed: boolean,
+  sortOrder: 'ascend' | 'descend' | undefined,
+  resizable: boolean,
   title: string,
-  dataIndex: string,
-  sortOrder?: boolean   //排序
+  key: string,
+  sorter: boolean
 }
 
-export type DataSourceKey = keyof  DataSource;
 
+export type Data = {
+  total:number, 
+  dataSource: any[]
+}
+
+//
+export type HeaderRowProps = {
+  columns: Column[];
+  sorter: (key: string, asc: boolean) => void;
+}

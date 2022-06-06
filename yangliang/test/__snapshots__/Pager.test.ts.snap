@@ -1,0 +1,15 @@
+// Vitest Snapshot v1
+
+exports[`active component 1`] = `
+"<li class=\\"pager active\\">
+  <!---->
+</li>"
+`;
+
+exports[`mount component 1`] = `"<li class=\\"pager active\\">1</li>"`;
+
+exports[`no-active component 1`] = `
+"<li class=\\"pager \\">
+  <!---->
+</li>"
+`;
