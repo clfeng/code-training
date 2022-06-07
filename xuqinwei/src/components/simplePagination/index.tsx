@@ -22,13 +22,13 @@ export default defineComponent({
   setup(props, { emit }) {
     // props需要传入总条数、每页的条数、当前页
     const { current, pageSize, total } = toRefs(props)
-    const value = ref<number>()
+    const jumperPagerNum = ref<number>()
     const range = computed(() => {
       return Math.max(Math.floor(total.value / pageSize.value), 1)
     })
 
     function handleInputChange() {
-      const num = Number(value.value)
+      const num = Number(jumperPagerNum.value)
       let next = isNaN(num) ? current.value : num
 
       next = Math.max(Math.min(range.value, next), 1)
@@ -61,7 +61,7 @@ export default defineComponent({
             <span>跳至</span>
             <input
               class="si-pagination__input"
-              v-model={value.value}
+              v-model={jumperPagerNum.value}
               onChange={() => { handleInputChange() }}
             />
             <span>页</span>

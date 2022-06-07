@@ -7,19 +7,14 @@ const userList = {
     code: 200,
     message: "请求成功",
     'list|10': [{
-      // id: '@id',
       name: '@cname',
-      // email: '@email',
-      // phone: /^1[385][1-9]\d{8}/,
       'sex|1': ['男', '女'],
       address: '@cparagraph',
       age: '@integer(0,100)',
-      // updateTime: '@integer'
     }],
-    total: '43',
+    total: 43,
     pageSize: 10,
     'current|1': [1, 2, 3, 4, 5],
-
   },
 }
 export default [
