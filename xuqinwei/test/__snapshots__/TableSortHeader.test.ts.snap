@@ -1,0 +1,8 @@
+// Vitest Snapshot v1
+
+exports[`table header 1`] = `
+"<div class=\\"table__sort\\">
+  <!---->
+  <!---->
+</div>"
+`;
