@@ -35,7 +35,7 @@ Column
 DEMO
 ```
 import { defineComponent } from "vue";
-import { type TableProps, tableProps, ListItemType } from "./types";
+import { type TableProps, tableProps, ListType } from "./types";
 import {SiTable} from '@/components/si-table'
 
 export default defineComponent({

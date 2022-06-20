@@ -1,0 +1,14 @@
+// Vitest Snapshot v1
+
+exports[`mount component 1`] = `
+"<ul class=\\"si-pagination\\">
+  <li class=\\"si-pagination__item prve-page\\">&lt;</li>
+  <li class=\\"si-pagination__item\\">1</li>
+  <li class=\\"si-pagination__item\\">2</li>
+  <li class=\\"si-pagination__item\\">3</li>
+  <li class=\\"si-pagination__item\\">4</li>
+  <li class=\\"si-pagination__item\\">5</li>
+  <li class=\\"si-pagination__item next-page\\">&gt;</li>
+  <div><span>跳至</span><input class=\\"si-pagination__input\\"><span>页</span></div>
+</ul>"
+`;

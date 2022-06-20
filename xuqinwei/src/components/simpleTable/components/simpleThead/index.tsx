@@ -1,28 +1,35 @@
 import { defineComponent } from 'vue'
-// import './index.less'
+import './index.less'
+
+import HeaderSort from './HeaderSort'
 
 export default defineComponent({
   name: 'simpleThead',
 
-  emits: ['change'],
+  emits: ['sort'],
+  components: {
+    HeaderSort
+  },
   props: {
     dataColumns: {
       type: Array,
       default: []
     },
-
   },
-  setup(props) {
+  setup(props, { emit }) {
+    function headClick(prop, order) {
+      emit('sort', prop, order)
+
+    }
     return () => {
       return <tr class="head-tr">
         {
           props.dataColumns.map(item => {
             return <th class="head-th">
               {item.label}
-              {/* 暂未做排序功能 */}
-              {/* {
-                item.isSort && <i onClick={() => { headClick(item.prop) }}>^</i>
-              } */}
+              {
+                item.isSort && <header-sort column={item} onSort={headClick} />
+              }
             </th>
           })
         }
